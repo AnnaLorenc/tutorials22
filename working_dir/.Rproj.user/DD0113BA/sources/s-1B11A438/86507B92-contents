@@ -19,19 +19,18 @@ knitr::opts_chunk$set(eval=FALSE)
 In this introduction to R, we will present the main R concepts, by introducing 
 R variables, vectors, data frames, lists, functions and packages.  
 
-We have just 2h - in this time no one learns how to speak a new language! This time is meant to give you just a glimpse in R with live coding and introduce some basic concepts. There are many fantastic sources to learn R  online, I strongly recommend:
-https://www.adventures-in-r.com 
-and Software Carpentry course http://swcarpentry.github.io/r-novice-inflammation/ (all Software/Data Carpentries are generally highly recommended! https://software-carpentry.org/ https://datacarpentry.org/ )
+The goal is meant to give you just a glimpse in R with live coding and introduce some basic concepts. There are many fantastic sources to learn R  online, I strongly recommend:
+https://www.adventures-in-r.com  
+and [Software Carpentry course](http://swcarpentry.github.io/r-novice-inflammation/)  
 
 
+Examples of data reshaping, processing and plotting:  
+[Working with data in R](https://paulc91.github.io/intro_to_r/#1)  
+[Data wrangling and plotting slides - tidyverse](https://evamaerey.github.io/tidyverse_in_action/tidyverse_in_action.html#1)  
 
-To see examples of data reshaping, processing and plotting:
-https://paulc91.github.io/intro_to_r/#1
-https://evamaerey.github.io/tidyverse_in_action/tidyverse_in_action.html#1
+We will present basic `R` and then some useful features of the fantastic world of _tidyverse_ https://www.tidyverse.org/.  
 
-We will present basic `R` and then some useful features of the fantastic world of _tidyverse_ https://www.tidyverse.org/.
-
-#R and RStudio installation
+# R and RStudio installation
 These are preinstalled on the course Virtual Machine. To install them on your personal computer, get `R`  for your operating system from https://cran.r-project.org/ and `RStudio` (the free version) from https://www.rstudio.com/.
 
 
@@ -66,9 +65,9 @@ complete it:
 ~~~
 
 
-Any time you hit return and the R session shows a "+" instead of a ">", it
+Any time you hit return and the R session shows a `+` instead of a `>`, it
 means it's waiting for you to complete the command. If you want to cancel
-a command you can simply hit "Esc" and RStudio will give you back the ">"
+a command you can simply hit `Esc` and RStudio will give you back the `>`
 prompt.
 
 
@@ -106,7 +105,7 @@ Remember that others may later read your code.
 ```
 
 
-The text after each line of code is called a
+The text after each line of code is a
 "comment". Anything that follows after the hash (or octothorpe) symbol
 `#` is ignored by R when it executes code.
 
@@ -124,6 +123,10 @@ You can write numbers in scientific notation too:
 ```{r}
 5e3  # Note the lack of minus here
 ```
+
+You can send the commands from source to execution in the console. Use the arrow in the topright corner of a chunk to send the whole chunk or the button Run from the very topright (check out shortcuts for sending a specifc line!).
+From now on, instead of retyping in the console, send the commands to execute. 
+
 
 ## Functions
 
@@ -154,19 +157,15 @@ Don't worry about trying to remember every function in R. You
 can simply look them up on Google, or if you can remember the
 start of the function's name, use the tab completion in RStudio.
 
-This is one advantage that RStudio has over R on its own, it
-has auto-completion abilities that allow you to more easily
-look up functions, their arguments, and the values that they
-take.
 
 Typing a `?` before the name of a command will open the help page
 for that command. As well as providing a detailed description of
 the command and how it works, scrolling to the bottom of the
 help page will usually show a collection of code examples which
 illustrate command usage. 
-In RStudio, when you type function name, it shows little bubble with basic help about this function.
+In RStudio, when you type function name, it shows a little bubble with some basic help about this function.
 
-(RStudio overview)
+
 ```{r}
 help("mean") 
 ?mean
@@ -175,7 +174,7 @@ help("mean")
 
 
 ### Variables
-Variables persist, workspace
+
 In R, we have two main types of values: numeric values and characters. Type each of these in the console and click ENTER.
 ```{r}
 1
@@ -190,7 +189,7 @@ a
 a = 1
 ```
 
-They will persist in the workspace untill the R session is finished or they are removed (see them in the "Environment" tab!) 
+They will persist in the workspace untill the R session is finished or they are removed (see them in the `Environment` tab of RStudio!) 
 And re-use them :
 ```{r}
 a + a
@@ -202,9 +201,8 @@ a
 A
 ```
 
-You can also type your code in a source file and execute code from file.
 
-Exercises:
+**Exercises**:
 
 1) Assign a number of your choice to "b"
 ```{r}
@@ -247,7 +245,7 @@ c(b, b)
 
 You can also apply mathematical formulas to them:
 ```{r}
-b + b #what exactly happened here?
+b + b #what exactly happened here? This is vectorisation - you can easily apply a function to a vector of values instead of a single value. Get sinus of b.
 ```
 
 Vectors can hold numeric values, characters or logical values. The only condition is that they all have to be of the same type
@@ -266,7 +264,7 @@ fruit_vector[c(1,3)]
 
 ```
 
-5) How to get a banana?
+6) How to get a banana?
 ```{r}
 
 ```
@@ -284,24 +282,24 @@ animal_vector["fish"]
 
 ```
 
-6) What would be animal_vector[2]?
+7) What would be animal_vector[2]?
 ```{r}
 
 ```
 
-7) Combine a and b
+8) Combine a and b
 ```{r}
 
 ```
 
-8) Combine  your name and a. Is the output character or numeric?
+9) Combine  your name and a. Is the output character or numeric?
 ```{r}
 
 ```
 
 Elements of a vector have to be of the same type. If types are mixed, R decides for more general format (in this case character)
 
-9) Add a to b
+10) Add a to b
 ```{r}
 
 ```
@@ -313,12 +311,13 @@ Many functions exist in R, and greatly simplify your life:
 b <- 1:10
 
 (1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10)/10
+sum(b)
 mean(b)
 ```
 
-The head() function shows the 6 first elements of any object.  
-The median() function computes the median of a vector.  
-The length() function returns the length of a vector.
+The `head()` function shows the 6 first elements of any object.  
+The `median()` function computes the median of an object.  
+The `length()` function returns the length of an object.
 
 ```{r}
 head(b)
@@ -346,7 +345,7 @@ log(vect)
 ```
 
 
-You can define your own functions and then use them:
+If you define your own functions you can use them in the following code:
 ```{r}
 
 my_first_function <- function(x){  #silly function  to divide its argument by 3
@@ -390,7 +389,8 @@ my_list[["my_letters"]]
 ```
 
 
-10) Create a list containing your name, and job:
+11) Create a list containing your name, and job:
+
 ```{r}
 
 ```
@@ -428,6 +428,7 @@ exampleDataFrame[, "disease"]
 exampleDataFrame[3, ]
 exampleDataFrame[1:2, "age"]
 exampleDataFrame[, "patientID"] 
+exampleDataFrame[1:2, c("age","patientID")]
 
 #Now take patientID and age information only - fill the code
 exampleDataFrame[ , ]
@@ -442,7 +443,7 @@ exampleDataFrame$age
 
 Add a column
 ```{r}
-exampleDataFrame <- cbind(exampleDataFrame,season=c("winter", "winter", "summer"))
+exampleDataFrame <- cbind(exampleDataFrame, season=c("winter", "winter", "summer"))
 exampleDataFrame
 ```
 
@@ -456,11 +457,11 @@ glimpse(exampleDataFrame)
 
 ### Matrices
 
-Matrices are similar in shape  to data.frames - they are also "tables" - but are more constrained: all the data in a matrix has to be of one type. They are very useful for fast computation, for example gene x sample gene expression matrix. Matrices can have row names and column names. They can be subset in a similar way as data.frames - by [,].
+Matrices are similar in shape  to data.frames - they are also "tables" - but are more constrained: all the data in a matrix has to be of one type. They are very useful for fast computation, for example gene x sample gene expression matrix. Matrices can have row names and column names. They can be subset in a similar way as data.frames - by [,] (using row numbers and column numbers or their names).
 
 
 ## Packages
-You have access to all functions from the libraries installed for your R, however - besides of basic R - you have at some point load an installed package to your R session. Have a look on the tab "Packages" - it lists all available packages, ones which are loaded are ticked.
+You have access to all functions from the libraries installed for your R. To use a function from a non-base R package, you either have to add package name (`dplyr::filter()` to use the function `filter` form the package _dplyr_) or load this package into the workspace with  `library()` (for example `library(dplyr)`. Have a look on the tab "Packages" - it lists all available packages, ones which are loaded are ticked.
 
 Packages contain sets of useful functions, which can be installed, loaded, and 
 then used in R. You can find a package for almost anything. A package needs to be installed only once on your computer:
@@ -480,7 +481,7 @@ Look for help/ideas
 ??emojifont
 ```
 
-Examples of what you can do with emojis:
+Examples of what you can do with _emojis_:
 ```{r}
 search_emoji("smile")
 
@@ -490,7 +491,7 @@ ggplot() + geom_emoji("heart", color='steelblue') + theme_void()  ##ggplot is a 
 
 ```
 
-Now load the package _tidyverse_  - this is a bundle of packages we will investigate in more detail later. Now we'll use handy read/write data functions.
+Now load the package _tidyverse_  - this is a bundle of packages we will investigate in more detail later. Now we'll use its handy read/write data functions.
 ```{r}
 library(tidyverse)
 ```
@@ -500,6 +501,7 @@ library(tidyverse)
 
 Objects that were created in R can be exported in many formats to be shared. You can save them in a compact R-specific format and load later:
 ```{r}
+library(emojifont)
 
 surprise <- read_rds("data/surprise.RDS")
 
@@ -545,7 +547,6 @@ dev.off()
 You can also directly export from the "Plots" tab.
 
 
-
 In ggplot you can  keep a plot as an object. It makes tweaking it easier, as you can add parameters with "+". Plots from ggplot framework can be saved to pdf/jpg/other formats with the function `ggsave()`
 ```{r}
 
@@ -556,10 +557,11 @@ my_plot + theme_dark()
 my_plot + theme_bw()
 ```
 
-11)
-You can add a title to your plot with `ggtitle("TITLE")`. Make now a plot with red heart and a title (hint: you can't have a title withe theme_void) and save it to a .pdf file in the folder results
+12)
+You can add a title to your plot with `ggtitle("TITLE")`. Make now a plot with red heart and a title (hint: you can't have a title withe theme_void) and save it to a .pdf file in the folder _results_
 ```{r,eval=FALSE,echo=TRUE}
 final_plot <-
+  
 ggsave()  
 ```
 

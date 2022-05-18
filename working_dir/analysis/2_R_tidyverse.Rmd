@@ -1,8 +1,7 @@
 ---
 title: "Part 2 - a glimpse into tidyverse world"
 output:
-  pdf_document: default
-  html_document:
+  html_document: 
     df_print: paged
 editor_options: 
   chunk_output_type: console
@@ -14,18 +13,16 @@ knitr::opts_chunk$set(echo=TRUE)
 knitr::opts_chunk$set(eval=FALSE)
 ```
 
-Open the file R_tidyverse.Rmd
-Run a chunk
-
-highlight and Run (top of the file tab) selected line
-
-knit button
+Open the file *R_tidyverse.Rmd*.  
+Run a chunk.   
+Highlight and Run (top of the file tab) selected line.  
+What happens when you use the `knit` button?  
 
 # Data frames and tibbles
 
 Data frames are similar to tables. They are very handy for storing and processing observations, as each column can hold data of different type.
 Let's read a table with results of an experiment.
-Tibbles are a tidyverse extended version of data.frames and they use their own, simpler syntax. We will start by loading a library tidyverse - a bundle with many data processing libraries.
+Tibbles are a tidyverse extended version of data frames and they use their own, simpler syntax. We  start by loading the library _tidyverse_ - a shortcut to load a bundle with many data processing libraries.
 
 ```{r}
 library( tidyverse )
@@ -36,12 +33,13 @@ We'll read input data directly from a webpage. We will use the data about immune
 ```{r}
 covid_data <- read_csv( "https://www.immunophenotype.org/wp-content/uploads/2020/07/2020-06-30flow_sero_cyto__ifnaexport.csv" )
 
-##Just in case you cannot access it online
-#covid_data <- read_csv( "data/covid_just_in_case.csv")
+##Just in case you cannot access it online, the downloaded data is in the dir data
+#covid_data <- read_csv( "data/just_in_case/covid_just_in_case.csv.gz")
 
 
 #How big is this dataset? ###
 covid_data 
+dim(covid_data )
 
 #print a useful summary
 glimpse( covid_data )
@@ -68,7 +66,7 @@ covid_data[ 1:3, "Clinical_sample" ]
 
 ### Operator %>%
 
-In R we often perform whole series of operations: for example subset a table by rows and columns, compute an average of some columns, add a number to this average. Operator %>% ( pipe ) helps to make it more legible by using an output of the function before pipe as input of the function after pipe.
+In R we often perform whole series of operations: for example subset a table by rows and columns, compute an average of some columns, add a number to this average. Operator `%>%` ( pipe ) helps to make it more legible by using an output of the function before pipe as input of the function after pipe.
 
 ```{r}
 
@@ -99,8 +97,8 @@ Pipes are especially helpful for filtering and summarizing data.
 
 ### Selecting columns and filtering rows in tibbles
 
-One can select columns and filter rows for specific values with functions select( ) and filter( ). For filtering helpful are:
- == , >, >= , <, <= , != , %in%. Select let's you also easily change column order and give a column a new name when selecting
+One can select columns and filter rows for specific values with functions `select( )` and `filter( )`. For filtering helpful are:
+ `==` , `>`, `>=` , `<`, `<=` , `!=` , `%in%`. Select lets  also easily change column order and give a column a new name when selecting
 
 ```{r, eval=FALSE}
 
@@ -120,17 +118,20 @@ covid_data %>%
 
 #Find all samples with less than 10% of T cells in CD45 cells
 covid_data %>%
- select( Clinical_sample, `T_01/CD45_01 |freq` ) %>%
- filter( `T_01/CD45_01 |freq` < 0.1 )
+ select( Clinical_sample, T_cells=`T_01/CD45_01 |freq` ) %>%
+ filter( T_cells < 0.1 )
 
 
 #Find frequencies of T and B cells for sample "p028n01" ( this is 'patient 28, sample 1' )
 covid_data %>%
  select( Clinical_sample, `T_01/CD45_01 |freq`, `Memory_B_01/B_01 |freq` ) %>%
  filter( Clinical_sample == "p028n01" )
+```
 
+
+```{r exercise1}
 ###(1)
-###Now you. How many samples has patient p001? Add missing parts of the code
+###Now you. How many samples has patient p001? 
 ###
 #covid_data 
 # filter( )
@@ -177,7 +178,7 @@ covid_data_annotated_small <- covid_data_annotated %>%
 ```
 
 ### Adding new columns
-New columns get added by the function mutate( )
+New columns get added by the function `mutate( )`
 
 ```{r}
 
@@ -188,7 +189,7 @@ covid_data_annotated_small <- covid_data_annotated_small %>%
 ```
 
 ### Summarising
-Function summarise( ) gives one number summaries:
+Function `summarise( )` gives one number summaries:
 
 ```{r}
 #summarise: what summarie
@@ -216,7 +217,7 @@ covid_data_annotated_small %>%
 
 ### Grouping
 
-Grouping data by a column value permits to perform operations per group. You can group by more than 1 column. To remove grouping: ungroup(). To treat each row separately use rowwise()
+Grouping data by a column value permits to perform operations per group. You can group by more than 1 column. To remove grouping: `ungroup()`. To treat each row separately use `rowwise()`
 
 ```{r}
 #Group by sex and perform the same calculations as before
@@ -240,7 +241,9 @@ covid_data_annotated_small %>%
    max_ratio = max( CD4_CD8_ratio, na.rm = T ), 
    min_ratio = min( CD4_CD8_ratio, na.rm = T ), 
    N = n( ), individuals = n_distinct( patient_id ) )
+```
 
+```{r exercise2}
 ###(2)
 ###Now you: fill in the code. Count number of samples per individual ( group by individual and use n( ) ).
 ### 
@@ -256,11 +259,12 @@ covid_data_annotated_small  XXXX
 
 ```
 
-## changing shape
+
 
 ## ggplot2
 The package ggplot2 and its many related packages allows to get beautiful graphics, change your plots quickly and also 
-fine-tune details. It is based on the concept of layers- you can add many charts from one dataset to a plot. Each layer is prepared with the function geom_XXX, where XXX is type of plot. Information from your input data is mapped to different aesthetics: for example CD4 number is presented on y axis, age group on x, sex as colour. Parts of the ggplot( ) are added with + .
+fine-tune details.  
+It is based on the concept of layers - you can add many charts from one (or more) dataset to a plot. Each layer is prepared with the function geom_XXX, where XXX is type of plot. Information from your input data is mapped to different aesthetics: for example CD4 number is presented on y axis, age group on x, sex as colour. Parts of the `ggplot( )` are added with + . 
 
 ```{r}
 
@@ -272,17 +276,46 @@ covid_data_annotated_small %>%
 covid_data_annotated_small %>%
  ggplot( ) + 
  geom_boxplot( aes( x = age, y = CD4, fill = sex ) )
+```
 
+
+
+```{r exercise3}
 ###(3)
-###Now you. Plot CD8s by status
+###Now you. Plot CD8s by disease status
 ###
 
 
 ```
 
-## lapply()
 
-lapply() applies a function on each elemment of a list separately. Other ways of applying a function to list elements you may encounter is with help of map() or a loop for(...){function()}
+## Changing shape
+Quite often is it useful to reshape the data in a long format (each row contains only one observation) or wide format (all measurements for one sample are in one row).
+```{r}
+covid_data_annotated_small_long <- covid_data_annotated_small%>%
+   pivot_longer(cols = CD4:CD4_CD8_ratio,
+                names_to = "measure") 
+
+covid_data_annotated_small_long 
+
+#Long format is very useful for data faceting - splitting plots by a factor:
+covid_data_annotated_small_long %>%
+ ggplot( ) + 
+ geom_boxplot( aes( x = age, y = value, fill = sex ) ) + facet_wrap(~measure, scales = "free_y")
+
+#Wide format might be useful for correlating the measures:
+covid_data_annotated_small_long %>%
+   pivot_wider(id_cols=Clinical_sample:status,names_from = measure, values_from = value, values_fill=NA)%>%
+   ggplot() + geom_point(aes(CD4, y=CD8, col=sex)) + facet_wrap(~age, scales = "free_y")
+
+```
+
+
+
+## lapply() etc
+
+`lapply()` applies a function on each element of a list separately. Other ways of applying a function to list elements you may encounter is: `sapply()`, `map()` or a loop `for(...){function()}`
+`apply()` applies a function to  a matrix or data frame by rows (MARGIN=1) or columns (MARGIN=2). 
 
 ```{r extension_lapply}
 
@@ -298,5 +331,9 @@ add_flower <- function( word ){
 lapply( 1:3, add_flower )
 
 
+covid_data_annotated_small%>%select(CD4, CD8, CD4_CD8_ratio)%>%
+   apply(.,MARGIN = 2,function(x) mean(x, na.rm=T))
+
+#why it breaks when MARGIN=1?
 
 ```

@@ -3,7 +3,7 @@
     "path": "~/Documents/teaching/ENLIGHTEN_22/R_intro/working_dir/analysis/2_R_tidyverse.Rmd",
     "project_path": "analysis/2_R_tidyverse.Rmd",
     "type": "r_markdown",
-    "hash": "1801901712",
+    "hash": "2093815138",
     "contents": "",
     "dirty": false,
     "created": 1652867687890.0,
@@ -13,15 +13,15 @@
         "chunk_output_type": "console",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "246,32",
-        "scrollLine": "241"
+        "cursorPosition": "272,49",
+        "scrollLine": "254"
     },
     "folds": "",
-    "lastKnownWriteTime": 1652868392,
+    "lastKnownWriteTime": 1652883907,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1652868392490,
+    "last_content_update": 1652883907845,
     "read_only": false,
     "read_only_alternatives": []
 }
