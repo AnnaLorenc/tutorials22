@@ -1,0 +1,129 @@
+﻿patient_id,class_dss,seropos,class_seropos_control_symptoms,age,sex,BMI,peak_WHO_ordinal_scale,peak_WHO_severity,covid_ip_bleed_01_WHO_score,trajectory_next_7days_post_Covidbleed01,smoker,diabetes_y_or_n
+p094,Low,pos,NA,46-55,F,30-34,2,Low,2,NA,Y,Y
+p104,Low,pos,NA,46-55,F,35 and above,1,Low,1,NA,N,N
+p105,Low,pos,NA,66-75,M,below 20,1,Low,1,NA,Y,N
+p106,Low,pos,NA,36-45,F,20-24,1,Low,1,NA,N,N
+p109,Low,pos,NA,66-75,F,25-29,1,Low,1,NA,N,N
+p112,Low,pos,NA,66-75,F,20-24,1,Low,1,NA,N,N
+p001,Moderate,pos,NA,76-85,M,25-29,3,Moderate,3,Stable,Y,Y
+p006,Moderate,pos,NA,25-35,F,35 and above,4,Moderate,4,Improve,N,N
+p010,Moderate,pos,NA,66-75,M,20-24,4,Moderate,4,Improve,N,Y
+p015,Moderate,pos,NA,36-45,M,25-29,4,Moderate,4,Improve,N,N
+p023,Moderate,pos,NA,56-65,M,30-34,3,Moderate,3,Improve,N,N
+p033,Moderate,pos,NA,76-85,M,25-29,4,Moderate,3,Improve,Y,Y
+p036,Moderate,pos,NA,66-75,M,20-24,3,Moderate,3,Improve,N,N
+p041,Moderate,pos,NA,76-85,F,35 and above,4,Moderate,4,Improve,N,N
+p042,Moderate,pos,NA,66-75,M,NA,4,Moderate,3,Improve,N,N
+p043,Moderate,pos,NA,25-35,M,25-29,4,Moderate,3,Improve,N,N
+p047,Moderate,pos,NA,56-65,M,20-24,4,Moderate,4,Stable,N,N
+p048,Moderate,neg,NA,56-65,F,30-34,3,Moderate,3,Improve,N,N
+p058,Moderate,neg,NA,46-55,F,20-24,3,Moderate,3,Improve,Y,Y
+p068,Moderate,pos,NA,56-65,M,35 and above,4,Moderate,3,Stable,Y,N
+p074,Moderate,neg,NA,36-45,M,below 20,4,Moderate,3,Worsen,Y,N
+p075,Moderate,pos,NA,76-85,M,30-34,4,Moderate,3,Improve,N,N
+p080,Moderate,pos,NA,56-65,M,25-29,4,Moderate,3,Improve,Y,N
+p083,Moderate,pos,NA,36-45,F,20-24,4,Moderate,3,Improve,N,N
+p084,Moderate,pos,NA,25-35,M,below 20,4,Moderate,4,Improve,N,N
+p088,Moderate,pos,NA,above 85,F,30-34,4,Moderate,3,Improve,Y,Y
+p090,Moderate,neg,NA,36-45,F,25-29,3,Moderate,3,Improve,N,N
+p091,Moderate,pos,NA,25-35,F,25-29,4,Moderate,3,Improve,?,N
+p092,Moderate,pos,NA,76-85,M,25-29,4,Moderate,4,Improve,Y,N
+p099,Moderate,neg,NA,76-85,M,below 20,3,Moderate,3,Stable,Y,Y
+p113,Moderate,pos,NA,56-65,F,below 20,4,Moderate,4,Improve,N,Y
+p117,Moderate,pos,NA,66-75,M,20-24,3,Moderate,3,Improve,N,Y
+p002,Severe,neg,NA,56-65,F,30-34,8,Severe,4,Worsen,N,N
+p003,Severe,pos,NA,56-65,M,35 and above,5,Severe,5,Improve,N,Y
+p007,Severe,pos,NA,46-55,M,35 and above,6,Severe,3,Improve,N,Y
+p009,Severe,pos,NA,46-55,M,35 and above,5,Severe,4,Improve,N,Y
+p011,Severe,pos,NA,25-35,M,25-29,6,Severe,3,Improve,N,N
+p012,Severe,pos,NA,36-45,M,30-34,6,Severe,3,Improve,N,N
+p014,Severe,pos,NA,36-45,M,30-34,5,Severe,4,Improve,N,Y
+p016,Severe,pos,NA,56-65,M,25-29,5,Severe,5,Improve,N,N
+p017,Severe,neg,NA,66-75,M,30-34,8,Severe,5,Worsen,Y,N
+p022,Severe,pos,NA,56-65,M,25-29,5,Severe,4,Improve,N,N
+p024,Severe,pos,NA,36-45,M,below 20,5,Severe,4,Improve,N,N
+p025,Severe,pos,NA,66-75,M,30-34,6,Severe,3,Improve,N,N
+p026,Severe,pos,NA,56-65,F,30-34,5,Severe,4,Improve,N,Y
+p028,Severe,pos,NA,46-55,M,30-34,7,Severe,6,Worsen,N,N
+p029,Severe,pos,NA,66-75,M,20-24,5,Severe,4,Improve,Y,N
+p030,Severe,pos,NA,36-45,M,20-24,6,Severe,3,Improve,Y,N
+p035,Severe,pos,NA,46-55,M,30-34,5,Severe,4,Improve,N,N
+p037,Severe,pos,NA,76-85,M,25-29,5,Severe,5,Improve,N,N
+p038,Severe,pos,NA,56-65,M,30-34,5,Severe,5,Improve,N,N
+p039,Severe,pos,NA,56-65,F,35 and above,6,Severe,3,Improve,N,N
+p044,Severe,pos,NA,56-65,M,20-24,8,Severe,4,Worsen,N,N
+p046,Severe,pos,NA,25-35,F,25-29,5,Severe,3,Improve,N,N
+p049,Severe,pos,NA,56-65,M,20-24,6,Severe,7,Stable,N,N
+p051,Severe,pos,NA,66-75,F,35 and above,6,Severe,4,Improve,Y,N
+p053,Severe,pos,NA,46-55,M,35 and above,7,Severe,4,Worsen,N,N
+p071,Severe,pos,NA,56-65,M,35 and above,7,Severe,7,Stable,N,Y
+p073,Severe,pos,NA,56-65,M,25-29,5,Severe,4,Stable,N,Y
+p076,Severe,pos,NA,46-55,F,30-34,6,Severe,5,Worsen,N,Y
+p093,Severe,pos,NA,76-85,M,20-24,5,Severe,5,Stable,Y,N
+p097,Severe,neg,NA,66-75,M,below 20,8,Severe,3,Worsen,Y,N
+p108,Severe,pos,NA,56-65,M,35 and above,8,Severe,5,Worsen,Y,N
+p095,LRTI_nonCovid,neg,NA,56-65,F,30-34,7,Severe,4,NA,N,N
+p102,LRTI_nonCovid,neg,NA,46-55,F,35 and above,4,Moderate,3,NA,Y,Y
+p103,LRTI_nonCovid,neg,NA,above 85,F,35 and above,5,Severe,4,NA,N,N
+p114,LRTI_nonCovid,neg,NA,56-65,M,25-29,3,Moderate,3,NA,Y,N
+p118,LRTI_nonCovid,neg,NA,46-55,M,20-24,5,Severe,4,NA,Y,N
+p119,LRTI_nonCovid,neg,NA,66-75,M,25-29,5,Severe,3,NA,N,N
+p121,LRTI_nonCovid,neg,NA,76-85,F,30-34,4,Moderate,3,NA,Y,Y
+p122,LRTI_nonCovid,NA,NA,66-75,M,35 and above,4,Moderate,4,NA,Y,Y
+p131,LRTI_nonCovid,neg,NA,above 85,M,25-29,5,Severe,3,NA,N,N
+p136,LRTI_nonCovid,neg,NA,66-75,F,30-34,3,Moderate,3,NA,Y,Y
+p005,seroneg_control,neg,NA,46-55,M,NA,0,NA,NA,NA,NA,NA
+p019,seroneg_control,neg,NA,56-65,M,NA,0,NA,NA,NA,NA,NA
+p020,seroneg_control,neg,NA,25-35,M,NA,0,NA,NA,NA,NA,NA
+p021,seroneg_control,neg,NA,36-45,M,NA,0,NA,NA,NA,NA,NA
+p027,seroneg_control,neg,NA,25-35,M,NA,0,NA,NA,NA,NA,NA
+p032,seroneg_control,neg,NA,25-35,F,NA,0,NA,NA,NA,NA,NA
+p034,seroneg_control,neg,NA,25-35,M,NA,0,NA,NA,NA,NA,NA
+p045,seroneg_control,neg,NA,36-45,M,NA,0,NA,NA,NA,NA,NA
+p050,seroneg_control,neg,NA,25-35,F,NA,0,NA,NA,NA,NA,NA
+p057,seroneg_control,neg,NA,15-24,F,NA,0,NA,NA,NA,NA,NA
+p060,seroneg_control,neg,NA,25-35,F,NA,0,NA,NA,NA,NA,NA
+p064,seroneg_control,neg,NA,25-35,M,NA,0,NA,NA,NA,NA,NA
+p065,seroneg_control,neg,NA,25-35,F,NA,0,NA,NA,NA,NA,NA
+p066,seroneg_control,neg,NA,25-35,F,NA,0,NA,NA,NA,NA,NA
+p069,seroneg_control,neg,NA,36-45,F,NA,0,NA,NA,NA,NA,NA
+p070,seroneg_control,neg,Symptomatic,36-45,M,NA,0,NA,NA,NA,NA,NA
+p077,seroneg_control,neg,NA,36-45,F,NA,0,NA,NA,NA,NA,NA
+p085,seroneg_control,neg,NA,66-75,F,NA,0,NA,NA,NA,NA,NA
+p087,seroneg_control,neg,NA,66-75,M,NA,0,NA,NA,NA,NA,NA
+p089,seroneg_control,neg,NA,36-45,M,NA,0,NA,NA,NA,NA,NA
+p096,seroneg_control,neg,NA,46-55,F,NA,0,NA,NA,NA,NA,NA
+p100,seroneg_control,neg,NA,46-55,M,NA,0,NA,NA,NA,NA,NA
+p101,seroneg_control,neg,NA,25-35,M,NA,0,NA,NA,NA,NA,NA
+p107,seroneg_control,neg,NA,56-65,M,NA,0,NA,NA,NA,NA,NA
+p120,seroneg_control,neg,NA,25-35,M,NA,0,NA,NA,NA,NA,NA
+p123,seroneg_control,neg,NA,46-55,M,NA,0,NA,NA,NA,NA,NA
+p124,seroneg_control,neg,NA,46-55,F,NA,0,NA,NA,NA,NA,NA
+p125,seroneg_control,neg,NA,25-35,M,NA,0,NA,NA,NA,NA,NA
+p132,seroneg_control,neg,NA,36-45,F,NA,0,NA,NA,NA,NA,NA
+p133,seroneg_control,neg,NA,25-35,F,NA,0,NA,NA,NA,NA,NA
+p138,seroneg_control,neg,NA,25-35,F,NA,0,NA,NA,NA,NA,NA
+p140,seroneg_control,neg,NA,25-35,M,NA,0,NA,NA,NA,NA,NA
+p004,seropos_control,pos,Symptomatic,56-65,M,NA,2,Low,NA,NA,NA,NA
+p008,seropos_control,pos,Asymptomatic,25-35,M,NA,1,Low,NA,NA,NA,NA
+p013,seropos_control,pos,Asymptomatic,25-35,F,NA,1,Low,NA,NA,NA,NA
+p018,seropos_control,pos,Asymptomatic,25-35,F,NA,1,Low,NA,NA,NA,NA
+p031,seropos_control,pos,Asymptomatic,36-45,F,NA,1,Low,NA,NA,NA,NA
+p040,seropos_control,pos,Asymptomatic,25-35,F,NA,1,Low,NA,NA,NA,NA
+p052,seropos_control,pos,Symptomatic,36-45,M,NA,2,Low,NA,NA,NA,NA
+p054,seropos_control,pos,Symptomatic,56-65,M,NA,2,Low,NA,NA,NA,NA
+p055,seropos_control,pos,Symptomatic,36-45,M,NA,2,Low,NA,NA,NA,NA
+p056,seropos_control,pos,Asymptomatic,36-45,F,NA,1,Low,NA,NA,NA,NA
+p059,seropos_control,pos,Asymptomatic,25-35,M,NA,1,Low,NA,NA,NA,NA
+p061,seropos_control,pos,Asymptomatic,25-35,F,NA,1,Low,NA,NA,NA,NA
+p062,seropos_control,pos,Asymptomatic,36-45,F,NA,1,Low,NA,NA,NA,NA
+p063,seropos_control,pos,Asymptomatic,66-75,F,NA,1,Low,NA,NA,NA,NA
+p078,seropos_control,pos,Symptomatic,36-45,M,NA,2,Low,NA,NA,NA,NA
+p081,seropos_control,pos,Asymptomatic,25-35,M,NA,1,Low,NA,NA,NA,NA
+p082,seropos_control,pos,Symptomatic,25-35,F,NA,2,Low,NA,NA,NA,NA
+p086,seropos_control,pos,Asymptomatic,66-75,M,NA,1,Low,NA,NA,NA,NA
+p111,seropos_control,pos,Symptomatic,46-55,M,NA,2,Low,NA,NA,NA,NA
+p126,seropos_control,pos,Symptomatic,36-45,F,NA,2,Low,NA,NA,NA,NA
+p134,seropos_control,pos,Asymptomatic,25-35,M,NA,1,Low,NA,NA,NA,NA
+p135,seropos_control,pos,Asymptomatic,36-45,F,NA,1,Low,NA,NA,NA,NA
+p137,seropos_control,pos,Asymptomatic,25-35,M,NA,1,Low,NA,NA,NA,NA
