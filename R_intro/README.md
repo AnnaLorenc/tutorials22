@@ -15,8 +15,8 @@ Software/Data Carpentries are generally highly recommended
 [Data Carpentry R courses](https://datacarpentry.org/ )  
 [More in depth course with videos by adventures-in-r](https://www.adventures-in-r.com)  
 [Babraham Institute collection of general/more specialised R courses](https://www.bioinformatics.babraham.ac.uk/training.html) - tidyverse, ggplot2, shiny  
-[Well structured intro to basic R](https://github.com/matloff/fasteR)
-[Exhaustive and enjoyable book about modern R - 'R for Data Science'](https://r4ds.had.co.nz/index.html)
+[Well structured intro to basic R](https://github.com/matloff/fasteR)  
+[Exhaustive and enjoyable book about modern R - 'R for Data Science'](https://r4ds.had.co.nz/index.html)  
 A very thorough collection of links about R, computational biology etc. from  [Jarek Bryk](https://github.com/jarekbryk/compbioftw)
 
 ---------
