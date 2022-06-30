@@ -1,0 +1,226 @@
+---
+title: "R Notebook"
+output:
+ html_notebook:
+  code_folding: hide
+---
+
+
+
+
+## Exercise 1
+
+Navigate to the directory with tutorials. Open exercises.nb.html in a browser. You are in the middle of the first exercise:).
+Start RStudio session and navigate to the tutorials directory. 
+
+
+## Exercise 2
+
+Open Jupyter notebook `intro_to_python.ipynb`. 
+
+Choose from exercises 2-4 below according to your needs. We will follow together exercises chosen according to a vote, but trainers will be going around and help also if you have chosen a different exercise.
+You will find a cheatsheet for jupyter notebook in the cheatsheets. 
+
+```{bash }
+# commandline: navigate to your working directory. Adjust the command below to reflect the path to .ipynb file
+jupyter notebook intro_to_python.ipynb 
+
+```
+
+
+At the bottom of the notebook, add a new section 'Exercise during the course'. 
+Load the package pandas and read in the `20-07-25patients_metadatav2.csv` file with patient metadata. 
+
+```{python}
+import pandas as pd
+
+file = 'R_intro/working_dir/data/20-07-25patients_metadatav2.csv'
+
+patient_data = pd.read_csv(file)
+```
+
+Explore its content and available methods. What are the column names? Have a peek on the top few rows. 
+```{python}
+#have a look on top/bottom rows 
+patient_data.head()
+patient_data.tail()
+
+#List column names
+patient_data.columns
+
+#Access subset of columns by row/column number or name
+patient_data.iloc[1:3,[4,2,6]]
+patient_data.loc[:,['patient_id','sex','age']]
+```
+
+Take a subset including only females with low disease severity
+```{python}
+
+patient_data.loc[(patient_data.class_dss = = 'Low') & (patient_data.sex = = 'F')]
+
+```
+
+Plot a histogram of WHO scores at admission (`covid_ip_bleed_01_WHO_score`)
+```{python}
+patient_data.hist('covid_ip_bleed_01_WHO_score')
+```
+
+
+Plot a boxplot of admission WHO scores by sex
+```{python}
+patient_data.boxplot(column = 'peak_WHO_ordinal_scale',by = 'sex',color = 'red')
+
+```
+
+
+## Exercise 3
+Use R and tidyverse to explore covid data. 
+Read in the metadata (`20-07-25patients_metadatav2.csv`) and tests results (online at `https://www.immunophenotype.org/wp-content/uploads/2020/07/2020-06-30flow_sero_cyto__ifnaexport.csv`).  
+
+```{r}
+metadata_loc = "data/20-07-25patients_metadatav2.csv"
+patient_info <- read_csv(metadata_loc)
+
+tests_loc = "https://www.immunophenotype.org/wp-content/uploads/2020/07/2020-06-30flow_sero_cyto__ifnaexport.csv" 
+covid_tests <- read_csv(tests_loc) 
+
+## Just in case you cannot access it online, the downloaded data is in tests_loc = 'R_intro/data/just_in_case/covid_just_in_case.csv.gz' (change tests_loc to this value)
+```
+
+
+
+Explore the metadata and tests objects. How many patients were in the study? How many samples per patient? For how many patients BMI info is available? 
+Below are coding examples of how to obtain this information, but there are many ways of doing it.
+```{r }
+
+dim(covid_tests)
+covid_tests
+
+#How many patients were in the study?
+patient_info
+patient_info$patient_id %>%
+ unique%>%
+ length  
+
+#How many samples per patient? 
+covid_tests %>%
+ group_by(patient_id)%>%
+ summarise(samples_per_patient = n())
+
+#For how many patients BMI info is available?  
+patient_info%>%
+ summarise(sum(!is.na(BMI)))
+ 
+
+
+```
+
+Now add the test data. 
+Does the number of samples per patient depend on the severity of the disease?
+
+```{r}
+covid_data_annotated <- covid_tests %>%
+ left_join( patient_info, ., by = c( "patient_id" ) )
+
+covid_data_annotated %>%
+ group_by(patient_id, class_dss)%>%
+ summarise(samples_per_patient = n()) %>%
+ ggplot(aes(x = class_dss, y = samples_per_patient, col = class_dss))+
+  geom_boxplot() 
+
+
+library(ggbeeswarm)
+ covid_data_annotated %>%
+ group_by(patient_id, class_dss)%>%
+ summarise(samples_per_patient = n()) %>%
+ ggplot(aes(x = factor(class_dss, levels = c("LRTI_nonCovid", "seroneg_control","seropos_control" ,"Low", "Moderate","Severe")),
+       y = samples_per_patient, col = class_dss))+
+  geom_boxplot() +
+  geom_quasirandom(varwidth = TRUE,grouponX = TRUE, alpha = 0.5, size = 3)+
+  theme_classic()+
+  ylim(0,8)+ ylab("Samples per patient")+
+  xlab("Disease level")+
+  guides(colour = "none")+
+  coord_flip()
+ 
+```
+
+For patients with more than 1 sample, plot how their RBD_IgG_Norm_sero and lymphocyte count change in time.
+```{r}
+
+patients_with_more_than_1_sample <- covid_data_annotated %>%
+ group_by(patient_id, class_dss)%>%
+ summarise(samples_per_patient = n()) %>%
+ filter(samples_per_patient > 1)%>%
+ .$patient_id
+
+
+covid_data_annotated %>%
+ filter(patient_id %in% patients_with_more_than_1_sample)%>%
+ separate(Clinical_sample,into = c("patient","consecutive_sample"),sep = "n")%>%
+ ggplot(aes(x = consecutive_sample, y = RBD_IgG_Norm_sero, group = patient_id, col = class_dss))+
+ geom_point()+ geom_line() +
+ scale_colour_discrete(name = "severity group")+
+ theme_classic() 
+
+another_column = 'Time_06/Cells_06/Singlets1_06/Singlets2_06/CD45p_06/Lymphocytes_06 | Count_back'
+
+covid_data_annotated %>%
+ filter(patient_id %in% patients_with_more_than_1_sample)%>%
+ separate(Clinical_sample,into = c("patient","consecutive_sample"),sep = "n")%>%
+ ggplot(aes(x = consecutive_sample, y = get(another_column), group = patient_id, col = class_dss))+
+ geom_point()+ geom_line() +
+ scale_colour_discrete(name = "severity group")+
+ theme_classic() 
+
+```
+
+
+
+## Exercise 4
+
+The goal of this exercise is to have a go at using a package you have not used before. If you know ggbio - maybe choose another package form Bioconductor, install it and have a go on accessing package-specific objects, related functions and methods.  
+Load the plotting library (ggbio) and the library with human annotation:
+```{r}
+library(ggbio) 
+library(Homo.sapiens) 
+```
+
+Plot IL7 transcripts:
+```{r}
+data(genesymbol, package = "biovizBase") #what sort of object is genesymbol?
+gr_il7 <- genesymbol[c("IL7")]    
+
+#Try your own gene. What sort of object is gr_il7?
+#What does it mean 'seqinfo: 45 sequences from an unspecified genome; no seqlengths'? Have a look on slots in gr_il7
+just_region <- range(gr_il7, ignore.strand = TRUE)
+p.txdb <- autoplot(Homo.sapiens, which = just_region) 
+p.txdb+theme_bw()
+autoplot(Homo.sapiens, which = gr_il7) 
+```
+
+
+Make a similar plot for genes located in chr19:39327059-39342999 or chr4:123279159-123414842
+```{r}
+gr <- GRanges(
+  seqnames = Rle(c("chr4"),1),
+  ranges = IRanges(123279159, end = 123414842, names = "some_region"),
+  strand = Rle(strand(c("*")), c(1)))
+
+ autoplot(Homo.sapiens, which = gr, label.color = "red")
+```
+
+Write a function which takes in a data frame with chromosome location and plot transcripts across this area.
+
+
+What is going under the hood of autoplot? How it knows how to plot Homo.sapiens content?
+
+```{r}
+showMethods(autoplot)
+class(Homo.sapiens)
+
+getMethod(autoplot,signature = "OrganismDb")
+```
+
+
+
