@@ -8,15 +8,36 @@ output:
 
 
 
-## Exercise 1
+## Exercise 1A
 
-Navigate to the directory with tutorials. Open exercises.nb.html in a browser. You are in the middle of the first exercise:).
-Start RStudio session and navigate to the tutorials directory. 
+Open `/media/penelopeprime/Bioinfo-T-Cell-Immunology-July22/Day1/tutorials22/exercises.nb.html` in a browser. You are in the middle of the first exercise:).
 
+For today's exercises, we will use packages installed in the conda environment `group2_training_env`. To access them, start RStudio from within the conda.
+Open terminal. Activate conda:
+```{bash}
+conda activate group2_training_env
+```
 
-## Exercise 2
+Start RStudio session:
+```{bash}
+rstudio
+```
 
-Open Jupyter notebook `intro_to_python.ipynb`. 
+Change working directory to `/media/penelopeprime/Bioinfo-T-Cell-Immunology-July22/Day1/tutorials22/R_intro/working_dir`
+
+To deactivate conda (you may leave it running now, but please deactivate at the end of the day), type in the terminal:
+```{bash}
+conda deactivate
+```
+
+## Exercise 1B
+
+Open Jupyter notebook ` intro_to_python.ipynb`. 
+Open terminal and activate conda as before. 
+Start jupyter notebook `/media/penelopeprime/Bioinfo-T-Cell-Immunology-July22/Day1/tutorials22/Python_intro/intro_to_python.ipynb`
+```{bash}
+jupyter notebook /media/penelopeprime/Bioinfo-T-Cell-Immunology-July22/Day1/tutorials22/Python_intro/intro_to_python.ipynb
+```
 
 Choose from exercises 2-4 below according to your needs. We will follow together exercises chosen according to a vote, but trainers will be going around and help also if you have chosen a different exercise.
 You will find a cheatsheet for jupyter notebook in the cheatsheets. 
@@ -27,16 +48,22 @@ jupyter notebook intro_to_python.ipynb
 
 ```
 
+## Exercise 1C
+
+Please save your files on your VM machine disk. Do not write on `penelopeprime`, as this is a shared location (so you can overwrite someone else's file).
+Create a structure for your work: directories for code, data, results. At the end of the course you can create a personal directory on `penelopeprime`, where you can copy your code files. After the course we will make `penelopeprime` content available via ftp.
+
+## Exercise 2 - Python with jupyter notebook
 
 At the bottom of the notebook, add a new section 'Exercise during the course'. 
-Load the package pandas and read in the `20-07-25patients_metadatav2.csv` file with patient metadata. 
+Load the package pandas and read in the `20-07-25patients_metadatav2.csv` file with patient metadata. This file is in `/media/penelopeprime/Bioinfo-T-Cell-Immunology-July22/Day1/tutorials22/R_intro/working_dir/data/`.
 
 ```{python}
 import pandas as pd
 
-file = 'R_intro/working_dir/data/20-07-25patients_metadatav2.csv'
-
+file = '/media/penelopeprime/Bioinfo-T-Cell-Immunology-July22/Day1/tutorials22/R_intro/working_dir/data/20-07-25patients_metadatav2.csv'
 patient_data = pd.read_csv(file)
+
 ```
 
 Explore its content and available methods. What are the column names? Have a peek on the top few rows. 
@@ -53,11 +80,11 @@ patient_data.iloc[1:3,[4,2,6]]
 patient_data.loc[:,['patient_id','sex','age']]
 ```
 
-Take a subset including only females with low disease severity
+Take a subset including only females with low disease severity. Write it out as csv
 ```{python}
-
 patient_data.loc[(patient_data.class_dss = = 'Low') & (patient_data.sex = = 'F')]
-
+results_file = "~/results/females_low.csv"
+patient_data.write_csv(results_file)
 ```
 
 Plot a histogram of WHO scores at admission (`covid_ip_bleed_01_WHO_score`)
@@ -65,20 +92,22 @@ Plot a histogram of WHO scores at admission (`covid_ip_bleed_01_WHO_score`)
 patient_data.hist('covid_ip_bleed_01_WHO_score')
 ```
 
-
 Plot a boxplot of admission WHO scores by sex
 ```{python}
 patient_data.boxplot(column = 'peak_WHO_ordinal_scale',by = 'sex',color = 'red')
 
 ```
 
+Shut down the jupyter.
 
-## Exercise 3
+## Exercise 3 RStudio
 Use R and tidyverse to explore covid data. 
 Read in the metadata (`20-07-25patients_metadatav2.csv`) and tests results (online at `https://www.immunophenotype.org/wp-content/uploads/2020/07/2020-06-30flow_sero_cyto__ifnaexport.csv`).  
 
 ```{r}
-metadata_loc = "data/20-07-25patients_metadatav2.csv"
+
+library(tidyverse)
+metadata_loc = "/media/penelopeprime/Bioinfo-T-Cell-Immunology-July22/Day1/tutorials22/R_intro/working_dir/data/20-07-25patients_metadatav2.csv"
 patient_info <- read_csv(metadata_loc)
 
 tests_loc = "https://www.immunophenotype.org/wp-content/uploads/2020/07/2020-06-30flow_sero_cyto__ifnaexport.csv" 
