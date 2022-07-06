@@ -1,12 +1,17 @@
 ---
 title: "R Notebook"
 output:
- html_notebook:
-  code_folding: hide
+  html_document:
+    df_print: paged
+    code_folding: hide
+  html_notebook:
+    code_folding: hide
 ---
 
 
-
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, eval=FALSE) 
+```
 
 ## Exercise 1A
 
@@ -104,13 +109,14 @@ Shut down the jupyter.
 Use R and tidyverse to explore covid data. 
 Read in the metadata (`20-07-25patients_metadatav2.csv`) and tests results (online at `https://www.immunophenotype.org/wp-content/uploads/2020/07/2020-06-30flow_sero_cyto__ifnaexport.csv`).  
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 
 library(tidyverse)
-metadata_loc = "/media/penelopeprime/Bioinfo-T-Cell-Immunology-July22/Day1/tutorials22/R_intro/working_dir/data/20-07-25patients_metadatav2.csv"
+
+metadata_loc <- "/media/penelopeprime/Bioinfo-T-Cell-Immunology-July22/Day1/tutorials22/R_intro/working_dir/data/20-07-25patients_metadatav2.csv"
 patient_info <- read_csv(metadata_loc)
 
-tests_loc = "https://www.immunophenotype.org/wp-content/uploads/2020/07/2020-06-30flow_sero_cyto__ifnaexport.csv" 
+tests_loc <- 'https://www.immunophenotype.org/wp-content/uploads/2020/07/2020-06-30flow_sero_cyto__ifnaexport.csv' 
 covid_tests <- read_csv(tests_loc) 
 
 ## Just in case you cannot access it online, the downloaded data is in tests_loc = 'R_intro/data/just_in_case/covid_just_in_case.csv.gz' (change tests_loc to this value)
@@ -147,7 +153,7 @@ patient_info%>%
 Now add the test data. 
 Does the number of samples per patient depend on the severity of the disease?
 
-```{r}
+```{r, message=FALSE}
 covid_data_annotated <- covid_tests %>%
  left_join( patient_info, ., by = c( "patient_id" ) )
 
@@ -210,7 +216,7 @@ covid_data_annotated %>%
 
 The goal of this exercise is to have a go at using a package you have not used before. If you know ggbio - maybe choose another package form Bioconductor, install it and have a go on accessing package-specific objects, related functions and methods.  
 Load the plotting library (ggbio) and the library with human annotation:
-```{r}
+```{r, message=FALSE}
 library(ggbio) 
 library(Homo.sapiens) 
 ```
@@ -245,10 +251,18 @@ Write a function which takes in a data frame with chromosome location and plot t
 What is going under the hood of autoplot? How it knows how to plot Homo.sapiens content?
 
 ```{r}
+
+
+#S4
 showMethods(autoplot)
 class(Homo.sapiens)
-
 getMethod(autoplot,signature = "OrganismDb")
+
+##similar for S3 methods:
+#S3
+methods(princomp)
+getAnywhere('princomp.formula')
+
 ```
 
 
