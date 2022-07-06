@@ -1728,7 +1728,7 @@ pre code {
 <div id="exercise-1a" class="section level2">
 <h2>Exercise 1A</h2>
 <p>Open
-<code>/media/penelopeprime/Bioinfo-T-Cell-Immunology-July22/Day1/tutorials22/exercises.nb.html</code>
+<code>/home/training/Bioinfo-T-Cell-Immunology-July22/Day1/tutorials22/exercises.html</code>
 in a browser. You are in the middle of the first exercise:).</p>
 <p>For today’s exercises, we will use packages installed in the conda
 environment <code>group2_training_env</code>. To access them, start
@@ -1737,34 +1737,36 @@ RStudio from within the conda. Open terminal. Activate conda:</p>
 <p>Start RStudio session:</p>
 <pre class="bash"><code>rstudio</code></pre>
 <p>Change working directory to
-<code>/media/penelopeprime/Bioinfo-T-Cell-Immunology-July22/Day1/tutorials22/R_intro/working_dir</code></p>
+<code>/home/training/Bioinfo-T-Cell-Immunology-July22/Day1/tutorials22/R_intro/working_dir</code>.</p>
 <p>To deactivate conda (you may leave it running now, but please
 deactivate at the end of the day), type in the terminal:</p>
 <pre class="bash"><code>conda deactivate</code></pre>
 </div>
 <div id="exercise-1b" class="section level2">
 <h2>Exercise 1B</h2>
-<p>Open Jupyter notebook <code>intro_to_python.ipynb</code>. Open
-terminal and activate conda as before. Start jupyter notebook
-<code>/media/penelopeprime/Bioinfo-T-Cell-Immunology-July22/Day1/tutorials22/Python_intro/intro_to_python.ipynb</code></p>
-<pre class="bash"><code>jupyter notebook /media/penelopeprime/Bioinfo-T-Cell-Immunology-July22/Day1/tutorials22/Python_intro/intro_to_python.ipynb</code></pre>
+<p>Open Jupyter notebook <code>intro_to_python.ipynb</code>: -open
+terminal and activate conda as before, -start jupyter notebook
+<code>/home/training/Bioinfo-T-Cell-Immunology-July22/Day1/tutorials22/Python_intro/intro_to_python.ipynb</code></p>
+<pre class="bash"><code>jupyter notebook /home/training/Bioinfo-T-Cell-Immunology-July22/Day1/tutorials22/Python_intro/intro_to_python.ipynb
+</code></pre>
 <p>Choose from exercises 2-4 below according to your needs. We will
 follow together exercises chosen according to a vote, but trainers will
 be going around and help also if you have chosen a different exercise.
 You will find a cheatsheet for jupyter notebook in the cheatsheets.</p>
-<pre class="bash"><code># commandline: navigate to your working directory. Adjust the command below to reflect the path to .ipynb file
-jupyter notebook intro_to_python.ipynb 
-</code></pre>
 </div>
 <div id="exercise-1c" class="section level2">
 <h2>Exercise 1C</h2>
-<p>Please save your files on your VM machine disk. Do not write on
-<code>penelopeprime</code>, as this is a shared location (so you can
-overwrite someone else’s file). Create a structure for your work:
-directories for code, data, results. At the end of the course you can
-create a personal directory on <code>penelopeprime</code>, where you can
-copy your code files. After the course we will make
-<code>penelopeprime</code> content available via ftp.</p>
+<p>Please save your files on your VM machine disk. We have also a disk
+<code>penelopeprime</code>, and this is a shared location - easy to
+overwrite someone else’s file. Create structure for your work in
+<code>/home/training/Bioinfo-T-Cell-Immunology-July22/Day1/</code>: for
+example directories for code, data, results. At the end of the course
+you can create a personal directory on <code>penelopeprime</code>, where
+you can copy your code files. After the course we will make
+<code>penelopeprime</code> content available via ftp. Please create your
+personal directory there, in
+<code>/media/penelopeprime/Bioinfo-T-Cell-Immunology-July22/personal</code>
+(use your name or another unique label).</p>
 </div>
 <div id="exercise-2---python-with-jupyter-notebook" class="section level2">
 <h2>Exercise 2 - Python with jupyter notebook</h2>
@@ -1772,10 +1774,10 @@ copy your code files. After the course we will make
 course’. Load the package pandas and read in the
 <code>20-07-25patients_metadatav2.csv</code> file with patient metadata.
 This file is in
-<code>/media/penelopeprime/Bioinfo-T-Cell-Immunology-July22/Day1/tutorials22/R_intro/working_dir/data/</code>.</p>
+<code>/home/training/Bioinfo-T-Cell-Immunology-July22/Day1/tutorials22/R_intro/working_dir/data/</code>.</p>
 <pre class="python"><code>import pandas as pd
 
-file = &#39;/media/penelopeprime/Bioinfo-T-Cell-Immunology-July22/Day1/tutorials22/R_intro/working_dir/data/20-07-25patients_metadatav2.csv&#39;
+file = &#39;/home/training/Bioinfo-T-Cell-Immunology-July22/Day1/tutorials22/R_intro/working_dir/data/20-07-25patients_metadatav2.csv&#39;
 patient_data = pd.read_csv(file)</code></pre>
 <p>Explore its content and available methods. What are the column names?
 Have a peek on the top few rows.</p>
@@ -1792,7 +1794,7 @@ patient_data.loc[:,[&#39;patient_id&#39;,&#39;sex&#39;,&#39;age&#39;]]</code></p
 <p>Take a subset including only females with low disease severity. Write
 it out as csv</p>
 <pre class="python"><code>patient_data.loc[(patient_data.class_dss = = &#39;Low&#39;) &amp; (patient_data.sex = = &#39;F&#39;)]
-results_file = &quot;~/results/females_low.csv&quot;
+results_file = &quot;../results/females_low.csv&quot; #adjust path to reflect your preferred directory
 patient_data.write_csv(results_file)</code></pre>
 <p>Plot a histogram of WHO scores at admission
 (<code>covid_ip_bleed_01_WHO_score</code>)</p>
@@ -1809,7 +1811,7 @@ at
 <code>https://www.immunophenotype.org/wp-content/uploads/2020/07/2020-06-30flow_sero_cyto__ifnaexport.csv</code>).</p>
 <pre class="r"><code>library(tidyverse)
 
-metadata_loc &lt;- &quot;/media/penelopeprime/Bioinfo-T-Cell-Immunology-July22/Day1/tutorials22/R_intro/working_dir/data/20-07-25patients_metadatav2.csv&quot;
+metadata_loc &lt;- &quot;/home/training/Bioinfo-T-Cell-Immunology-July22/Day1/tutorials22/R_intro/working_dir/data/20-07-25patients_metadatav2.csv&quot;
 patient_info &lt;- read_csv(metadata_loc)
 
 tests_loc &lt;- &#39;https://www.immunophenotype.org/wp-content/uploads/2020/07/2020-06-30flow_sero_cyto__ifnaexport.csv&#39; 
@@ -1895,8 +1897,8 @@ covid_data_annotated %&gt;%
 not used before. If you know ggbio - maybe choose another package form
 Bioconductor, install it and have a go on accessing package-specific
 objects, related functions and methods.<br />
-Load the plotting library (ggbio) and the library with human
-annotation:</p>
+Load the plotting library (<code>ggbio</code>) and the library with
+human annotation:</p>
 <pre class="r"><code>library(ggbio) 
 library(Homo.sapiens) </code></pre>
 <p>Plot IL7 transcripts:</p>
